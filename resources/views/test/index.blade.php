@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Test</title>
 </head>
 <body>
-    @foreach($products as $product)
-    <p>{{$product->name_product}}</p>
+    @foreach($users as $user)
+    <p>{{$user->email}}</p>
     @endforeach
 </body>
 </html>

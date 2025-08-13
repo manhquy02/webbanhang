@@ -1,47 +1,34 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+// use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestController;
-use App\Http\Middleware\CheckAdminPermission;
 
 Route::get('/', function () {
     return ('welcome');
 });
- Route::resource('test',TestController::class);
 
- Route::get('/register',[AuthController::class,'showRegisterForm'])->name('register');
-Route::get('/login',[AuthController::class,'showLoginForm'])->name('login');
-Route::post('/login',[AuthController::class,'login']);
-    Route::post('/register',[AuthController::class,'register']);
+Route::resource('test', TestController::class);
 
-Route::post('/logout',[AuthController::class,'logout'])->name('logout');
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
 
-Route::middleware(['auth'])->group(function(){
-    Route::resource('orders',OrderController::class);
-    Route::resource('products',ProductController::class);
-    Route::resource('users',UserController::class);
-    Route::get('/products-export',[ProductController::class,'export'])->name('products.export');
-    Route::get('/users-export',[UserController::class,'export'])->name('users.export');
-     Route::get('/orders-export',[OrderController::class,'export'])->name('orders.export');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('orders', OrderController::class);
+    Route::resource('products', ProductController::class);
+    Route::resource('users', UserController::class);
+    
+    Route::get('/products-export', [ProductController::class, 'export'])->name('products.export');
+    Route::get('/users-export', [UserController::class, 'export'])->name('users.export');
+    Route::get('/orders-export', [OrderController::class, 'export'])->name('orders.export');
 });
-
-
-// Route::middleware(['auth','checkadminpermission:read'])->group(function(){
-//     Route::resource('orders',OrderController::class)->only(['index', 'show']);
-//     Route::resource('products',ProductController::class)->only(['index', 'show']);
-//     Route::resource('users',UserController::class)->only(['index', 'show']);
-// });
-
-// Route::middleware(['auth','checkadminpermission:fix'])->group(function(){
-//     Route::resource('orders',OrderController::class)->except(['index', 'show']);
-//     Route::resource('products',ProductController::class)->except(['index', 'show']);
-//     Route::resource('users',UserController::class)->except(['index', 'show']);
-// });
-
-
-
