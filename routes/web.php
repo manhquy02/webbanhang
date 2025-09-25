@@ -9,9 +9,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestController;
 
-Route::get('/', function () {
-    return ('welcome');
-});
+// Route::get('/', function () {
+//     return ('welcome');
+// });
 
 Route::resource('test', TestController::class);
 

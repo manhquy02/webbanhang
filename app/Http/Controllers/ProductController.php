@@ -99,13 +99,13 @@ class ProductController extends Controller
             'price' => 'required|numeric|gt:0',
             'category_id' => 'required|integer|exists:categories,id',
             'description' => 'required|string',
-            'image' => 'nullable|required|image|mimes:jpeg,png,jpg,gif',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
             'stock' => 'required|integer|gt:0',
         ]);
 
         if ($request->hasFile('image')) {
-            if ($product->image && \Storage::disk('public')->exists('images/' . $product->image)) {
-                \Storage::disk('public')->delete('images/' . $product->image);
+            if ($product->image && Storage::disk('public')->exists('images/' . $product->image)) {
+                Storage::disk('public')->delete('images/' . $product->image);
             }
 
             $imageName = time() . '.' . $request->image->extension();

@@ -17,9 +17,6 @@ class CheckAdminPermission
     {
         
         $user = $request->user();
-        if($user->permission_level === 'none'){
-            abort(403,'Bạn không có quyền truy cập');
-        }
        if ($requiredPermission === 'edit' && $user->permission_level !== 'edit') {
         abort(403, 'Bạn không có quyền chỉnh sửa');
     }

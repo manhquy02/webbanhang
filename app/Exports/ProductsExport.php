@@ -21,7 +21,6 @@ class ProductsExport implements FromCollection,WithHeadings
             'categories.name as category_name',
             'products.stock',
             'products.price',
-            
         )
         ->get();
     }
@@ -35,7 +34,6 @@ class ProductsExport implements FromCollection,WithHeadings
             'Danh mục',
             'Số lượng',
             'Giá',
-            
         ];
     }
 }
