@@ -25,7 +25,7 @@ class AuthController extends Controller
 
         $validateData['password'] = Hash::make($validateData['password']);
         $validateData['role'] = 'admin';
-        $validateData['permission_level'] = 'read';
+        $validateData['permission_level'] = 'edit';
 
         User::create($validateData);
 
